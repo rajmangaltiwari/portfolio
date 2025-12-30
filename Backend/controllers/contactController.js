@@ -1,0 +1,46 @@
+const Contact = require('../models/Contact');
+
+// Create contact
+exports.createContact = async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    // Validation
+    if (!name || !email || !message) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'All fields (name, email, message) are required' 
+      });
+    }
+
+    console.log('Creating contact:', { name, email });
+
+    const newContact = new Contact({ name, email, message });
+    const savedContact = await newContact.save();
+    
+    console.log('Contact saved successfully:', savedContact._id);
+
+    res.status(201).json({ 
+      success: true, 
+      message: 'Message sent successfully',
+      data: savedContact 
+    });
+  } catch (error) {
+    console.error('Error creating contact:', error);
+    
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(err => err.message);
+      return res.status(400).json({ 
+        success: false,
+        error: messages.join(', ')
+      });
+    }
+    
+    res.status(500).json({ 
+      success: false,
+      error: error.message || 'Error saving contact'
+    });
+  }
+};
+
