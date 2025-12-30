@@ -1,4 +1,5 @@
 const Contact = require('../models/Contact');
+const { sendContactNotification, sendConfirmationEmail } = require('../services/emailService');
 
 // Create contact
 exports.createContact = async (req, res) => {
@@ -19,6 +20,16 @@ exports.createContact = async (req, res) => {
     const savedContact = await newContact.save();
     
     console.log('Contact saved successfully:', savedContact._id);
+
+    // Send email notification to portfolio owner
+    await sendContactNotification({
+      name: savedContact.name,
+      email: savedContact.email,
+      message: savedContact.message
+    });
+
+    // Send confirmation email to the person who submitted
+    await sendConfirmationEmail(email, name);
 
     res.status(201).json({ 
       success: true, 
