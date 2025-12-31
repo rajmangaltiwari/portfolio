@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { contactAPI } from '../services/api'
+import { motion } from 'framer-motion'
+import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -48,19 +50,19 @@ const Contact = () => {
 
   const contactMethods = [
     {
-      icon: '📧',
+      icon: <FaEnvelope/>,
       title: 'Email',
       value: 'rajmangltiwari@example.com',
       link: 'https://mail.google.com/mail/?view=cm&fs=1&to=rajmangltiwari@example.com'
     },
     {
-      icon: '💼',
+      icon: <FaLinkedin/>,
       title: 'LinkedIn',
       value: 'linkedin.com/in/rajmangaltiwari',
       link: 'https://www.linkedin.com/in/rajmangal-tiwari'
     },
     {
-      icon: '🐙',
+      icon: <FaGithub/>,
       title: 'GitHub',
       value: 'github.com/rajmangaltiwari',
       link: 'https://github.com/rajmangaltiwari'
@@ -73,28 +75,43 @@ const Contact = () => {
       className="bg-linear-to-br from-purple-950 via-black to-purple-950 py-20 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div className="text-center mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.3 }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Get In <span className="bg-linear-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Touch</span>
           </h2>
           <div className="h-1 w-20 bg-linear-to-r from-purple-500 to-purple-600 mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <motion.div className="space-y-8"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          >
             <p className="text-gray-300 text-lg leading-relaxed">
               I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hello, feel free to reach out!
             </p>
 
             <div className="space-y-6">
               {contactMethods.map((method, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={method.link}
                   className="group flex items-start gap-4 p-4 bg-linear-to-br from-purple-900/20 to-black border border-purple-500/30 rounded-lg hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * index, duration: 0.6 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  whileHover={{ x: 5 }}
                 >
-                  <span className="text-4xl">{method.icon}</span>
+                  <span className="text-4xl text-white">{method.icon}</span>
                   <div>
                     <h3 className="text-lg font-bold text-purple-400 group-hover:text-purple-300 transition-colors">
                       {method.title}
@@ -103,11 +120,16 @@ const Contact = () => {
                       {method.value}
                     </p>
                   </div>
-                </a>
+                </motion.a>
               ))}
             </div>
 
-            <div className="pt-4">
+            <motion.div className="pt-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+            viewport={{ once: true, amount: 0.3 }}
+            >
               <h3 className="text-2xl font-bold text-white mb-4">Quick Links</h3>
               <div className="flex flex-wrap gap-3">
                 {[
@@ -124,11 +146,16 @@ const Contact = () => {
                   </a>
                 ))}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="bg-linear-to-br from-purple-900/30 to-black border border-purple-500/30 rounded-lg p-8 hover:border-purple-500/60 transition-all duration-300">
+          <motion.div className="bg-linear-to-br from-purple-900/30 to-black border border-purple-500/30 rounded-lg p-8 hover:border-purple-500/60 transition-all duration-300"
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.3 }}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               {successMessage && (
                 <div className="bg-green-900/30 border border-green-500/50 text-green-300 px-4 py-3 rounded-lg">
@@ -205,7 +232,7 @@ const Contact = () => {
                 {loading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

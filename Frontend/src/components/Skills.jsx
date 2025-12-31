@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 const Skills = () => {
   const skillCategories = [
@@ -26,18 +27,28 @@ const Skills = () => {
       className="bg-gradient-to-br from-purple-950 via-black to-black py-20 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <motion.div className="text-center mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.3 }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             My <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Skills</span>
           </h2>
           <div className="h-1 w-20 bg-gradient-to-r from-purple-500 to-purple-600 mx-auto rounded-full"></div>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((categoryData, index) => (
-            <div
+            <motion.div
               key={index}
               className="bg-gradient-to-br from-purple-900/20 to-black border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300 group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 * index, duration: 0.6 }}
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ y: -5 }}
             >
               <h3 className="text-xl font-bold text-purple-400 mb-4 group-hover:text-purple-300 transition-colors">
                 {categoryData.category}
@@ -50,11 +61,16 @@ const Skills = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="mt-16 bg-gradient-to-r from-purple-900/30 to-black border border-purple-500/30 rounded-lg p-8">
+        <motion.div className="mt-16 bg-gradient-to-r from-purple-900/30 to-black border border-purple-500/30 rounded-lg p-8"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.3 }}
+        >
           <h3 className="text-2xl font-bold text-white mb-6">Proficiency Levels</h3>
           <div className="space-y-6">
             {[
@@ -63,7 +79,12 @@ const Skills = () => {
               { skill: 'Full Stack Development', level: 75 },
               { skill: 'Web Performance', level: 80 }
             ].map((item, index) => (
-              <div key={index}>
+              <motion.div key={index}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 * index, duration: 0.6 }}
+              viewport={{ once: true, amount: 0.3 }}
+              >
                 <div className="flex justify-between mb-2">
                   <span className="text-gray-300 font-medium">{item.skill}</span>
                   <span className="text-purple-400 font-bold">{item.level}%</span>
@@ -74,10 +95,10 @@ const Skills = () => {
                     style={{ width: `${item.level}%` }}
                   ></div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

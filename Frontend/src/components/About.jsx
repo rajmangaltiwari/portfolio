@@ -1,54 +1,76 @@
-import React from 'react'
-
+import React from 'react';
+import {motion} from 'framer-motion';
+import profile from '../assets/profile.jpeg'
 const About = () => {
+  const stats = [
+    {label: "Experience", value: "Fresher"},
+    {label: "Speciality", value: "Full Stack"},
+   { label: "Focus", value: "Performance & Scalable Systems" }
+  ]
+  const glows = [
+    "-top-10 -right-10 w-[360px] h-[360px] opacity-20 blur-[120px]",
+    "bottom-0 left-10 w-[420px] h-[420px] opacity-15 blur-[140px] delay-300",
+    "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] opacity-10 blur-[100px]"
+  ]
   return (
-    <section
-      id="about"
-      className="bg-gradient-to-br from-black via-purple-950 to-black py-20 px-4 sm:px-6 lg:px-8"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            About <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Me</span>
-          </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-purple-500 to-purple-600 mx-auto rounded-full"></div>
-        </div>
+    <section id='about' className='min-h-screen w-full flex items-center relative justify-center  bg-black text-white overflow-hidden'>
+      <div className='absolute inset-0 pointer-events-none'>
+        {glows.map((ele, index) => (
+          <div key={index} className={`absolute rounded-full bg-gradient-to-r from-[#1a0033] via-[#6a0dad] to-[#2d0052] animate-pulse ${ele}`}/>
+        ))}
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="bg-gradient-to-br from-purple-900/30 to-black border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all duration-300">
-              <h3 className="text-2xl font-bold text-purple-400 mb-3">My Journey</h3>
-              <p className="text-gray-300 leading-relaxed">
-                I'm a passionate web developer with a keen eye for design. Over the years, I've built a strong foundation in modern web technologies and love creating beautiful, functional websites.
-              </p>
+      <div className='relative z-10 max-w-6xl w-full mx-auto px-6 md:px-10 lg:px-12 py-20 flex flex-col gap-12'>
+        <motion.div className='flex flex-col md:flex-row items-center md:items-stretch gap-8'
+        initial= {{opacity:0, y: 24}}
+        whileInView={{opacity: 1, y:0}}
+        transition={{duration: 0.6}}
+        viewport={{once:true, amount:0.4}}
+        >
+          <motion.div className=" relative w-40 h-40 md:w-50 md:h-50 rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-purple-500/20 to-black/50 border border-purple-500/30 "
+          whileHover={{scale: 1.02}}
+          transition={{type:"spring", stiffness: 200, damping: 18}}
+          >
+            <img src={profile} alt="profile" className='absolute inset-0 '/>
+          </motion.div>
+          <div className='flex-1 flex flex-col justify-center text-center md:text-left '>
+            <h2 className='text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text pb-2 text-transparent bg-gradient-to-r from-[#a855f7] via-[#7c3aed] to-[#a855f7]'>Rajmangal Tiwari</h2>
+            <p className='mt-2 text-lg sm:text-xl text-white/90 font-semibold'>
+              Full Stack Developer
+            </p>
+            <p className='mt-4 text-gray-300 leading-relaxed text-base sm:text-lg max-w-2xl md:max-w-3xl'>
+              I’m a full stack developer skilled in React, Redux, Node.js, Express.js, JavaScript, MongoDB, MySQL, Tailwind CSS, and REST APIs, passionate about creating clean, scalable, and engaging web applications.
+            </p>
+            <div className='grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl mt-6'>
+              {stats.map((ele, index) => (
+                <motion.div key={index} className='rounded-xl border border-purple-500/30 bg-purple-900/10 px-4 py-3 text-center'
+                initial={{opacity: 0, y: 10}}
+                whileInView={{opacity: 1, y: 0}}
+                transition= {{delay: 0.05*index, duration: 0.4}}
+                viewport={{once:true, amount:0.3}}
+                >
+                  <div className='text-sm text-gray-400'>{ele.label}</div>
+                  <div className='text-base font-semibold'>{ele.value}</div>
+                </motion.div>
+              ))}
             </div>
-
-            <div className="bg-gradient-to-br from-purple-900/30 to-black border border-purple-500/30 rounded-lg p-6 hover:border-purple-500/60 transition-all duration-300">
-              <h3 className="text-2xl font-bold text-purple-400 mb-3">My Passion</h3>
-              <p className="text-gray-300 leading-relaxed">
-                I believe in the power of great design and seamless user experiences. Every project is an opportunity to create something meaningful and impactful.
-              </p>
+            <div className='mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start'>
+              <a href="#projects" className='inline-flex items-center justify-center rounded-lg bg-purple-600 text-white font-semibold px-5 py-3 hover:bg-purple-700 transition'>View Projects</a>
+              <a href="#contact" className='inline-flex items-center justify-center rounded-lg border border-purple-500/50 text-white bg-purple-900/20  px-5 py-3 hover:bg-purple-900/40 transition'>Get in Touch</a>
             </div>
           </div>
 
-          <div className="space-y-6">
-            <div className="bg-gradient-to-br from-purple-900/40 to-purple-950/40 border border-purple-500/40 rounded-lg p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">What I Offer</h3>
-              <ul className="space-y-4">
-                {['Responsive Web Design', 'Modern JavaScript Development', 'UI/UX Optimization', 'Performance Enhancement', 'SEO Optimization', 'Cross-browser Compatibility'].map((item, index) => (
-                  <li key={index} className="flex items-center gap-3">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-purple-600">
-                      <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    </span>
-                    <span className="text-gray-300 font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
+        </motion.div>
+        <motion.div className='text-center md:text-left '
+        initial={{opacity:0, x: -30}}
+        whileInView={{opacity:1, x:0}}
+        transition={{duration:0.6}}
+        viewport={{once:true, amount: 0.4}}
+        >
+          <h3 className='text-2xl sm:text-3xl font-bold text-white mb-3'>About Me</h3>
+          <p className='text-gray-300 leading-relaxed text-base sm:text-lg'>I'm a Software Developer driven by the challenge of building smooth, high-performance web apps powered by React, Node.js, and modern web technologies.</p>
+          <p className='mt-4 text-gray-400 text-base sm:text-lg'>I Love turning ideas into scalable, user-friendly products that make an impact</p>
+        </motion.div>
       </div>
     </section>
   )
