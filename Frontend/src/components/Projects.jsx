@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import screenMe from '../assets/screenMe.jpeg'
+import weather from '../assets/weather.jpeg'
 
 const Projects = () => {
   const userProjects = [
@@ -28,9 +29,9 @@ const Projects = () => {
       title: 'Dynamic Weather Dashboard',
       description: 'An intuitive weather application that provides real-time weather data, forecasts, and interactive charts. Integrated with a third-party weather API.',
       tags: ['React', 'Weather API', 'Chart.js', 'Styled-Components'],
-      image: 'https://via.placeholder.com/400x250/2d0052/ffffff?text=Weather+App',
-      liveLink: '#',
-      githubLink: '#'
+      image: weather,
+      liveLink: 'https://weather-app-gilt-one-73.vercel.app/',
+      githubLink: 'https://github.com/rajmangaltiwari/Weather-Dashboard'
     },
     {
       id: 4,
