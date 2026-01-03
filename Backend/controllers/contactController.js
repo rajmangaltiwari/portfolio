@@ -49,7 +49,8 @@ exports.createContact = async (req, res) => {
       });
     }
     
-    res.status(500).json({ 
+    
+    return res.status(500).json({ 
       success: false,
       error: error.message || 'Error saving contact'
     });
