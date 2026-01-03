@@ -22,13 +22,17 @@ exports.createContact = async (req, res) => {
     console.log('Contact saved successfully:', savedContact._id);
 
     // Send email notification to portfolio owner
-    await sendContactNotification({
-      name: savedContact.name,
-      email: savedContact.email,
-      message: savedContact.message
-    });
+    try {
+      await sendContactNotification({
+        name: savedContact.name,
+        email: savedContact.email,
+        message: savedContact.message
+      });
+    } catch (emailError) {
+      console.error('⚠️ Email failed but contact saved:', emailError.message);
+    }
 
-    res.status(201).json({ 
+    return res.status(201).json({ 
       success: true, 
       message: 'Message sent successfully',
       data: savedContact 
@@ -51,4 +55,3 @@ exports.createContact = async (req, res) => {
     });
   }
 };
-
