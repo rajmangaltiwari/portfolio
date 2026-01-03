@@ -15,7 +15,7 @@ const corsOptions = {
       process.env.FRONTEND_URL?.replace(/\/$/, ''), // Remove trailing slash
       'http://localhost:5173',
       'http://localhost:3000',
-      'https://rajmangal.live',
+      'https://www.rajmangal.live',
       'https://server.rajmangal.live'
     ].filter(Boolean);
 
