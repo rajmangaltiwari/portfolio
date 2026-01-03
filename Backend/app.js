@@ -10,13 +10,15 @@ const contactRoutes = require('./routes/contactRoutes');
 
 // Middleware
 const corsOptions = {
-  origin: function(origin, callback) {
+  origin: function (origin, callback) {
     const allowedOrigins = [
       process.env.FRONTEND_URL?.replace(/\/$/, ''), // Remove trailing slash
       'http://localhost:5173',
-      'http://localhost:3000'
+      'http://localhost:3000',
+      'https://rajmangal.live',
+      'https://server.rajmangal.live'
     ].filter(Boolean);
-    
+
     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
@@ -42,13 +44,13 @@ app.use((req, res, next) => {
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('✅ MongoDB connected successfully');
-    console.log('Database:', process.env.MONGODB_URI );
+    console.log('Database:', process.env.MONGODB_URI);
   })
   .catch(err => {
     console.error('❌ MongoDB connection error:', err.message);
     console.error('Make sure MongoDB is running on localhost:27017');
   });
- 
+
 // Health check route
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'Server is running' });
@@ -61,18 +63,18 @@ app.use('/api/contact', contactRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack);
-  res.status(500).json({ 
+  res.status(500).json({
     success: false,
-    error: 'Something went wrong!' 
+    error: 'Something went wrong!'
   });
 });
 
 // 404 handler - MUST be last
 app.use((req, res) => {
   console.log(`404 - Route not found: ${req.method} ${req.path}`);
-  res.status(404).json({ 
+  res.status(404).json({
     success: false,
-    error: 'Route not found' 
+    error: 'Route not found'
   });
 });
 
