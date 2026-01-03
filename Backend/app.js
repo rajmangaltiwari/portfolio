@@ -9,12 +9,26 @@ const app = express();
 const contactRoutes = require('./routes/contactRoutes');
 
 // Middleware
-app.use(cors({
-  origin: [process.env.FRONTEND_URL],
+const corsOptions = {
+  origin: function(origin, callback) {
+    const allowedOrigins = [
+      process.env.FRONTEND_URL?.replace(/\/$/, ''), // Remove trailing slash
+      'http://localhost:5173',
+      'http://localhost:3000'
+    ].filter(Boolean);
+    
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
-}));
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
