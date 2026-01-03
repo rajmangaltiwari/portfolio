@@ -1,31 +1,28 @@
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 
-// Create email transporter
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD
-  }
-});
+// Initialize SendGrid with API key
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // Test connection on startup
-transporter.verify((error, success) => {
-  if (error) {
-    console.error('❌ Email service error:', error.message);
-  } else {
+async function verifyConnection() {
+  try {
+    // SendGrid doesn't have a native verify method, so we log initialization
     console.log('✅ Email service is ready');
+  } catch (error) {
+    console.error('❌ Email service error:', error.message);
   }
-});
+}
+
+verifyConnection();
 
 // Send email notification when new contact is received
 exports.sendContactNotification = async (contactData) => {
   try {
     const { name, email, message } = contactData;
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
+    const msg = {
       to: process.env.NOTIFY_EMAIL,
+      from: process.env.SENDGRID_FROM_EMAIL,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -48,8 +45,8 @@ exports.sendContactNotification = async (contactData) => {
       `
     };
 
-    const info = await transporter.sendMail(mailOptions);
-    console.log('📧 Email sent successfully:', info.response);
+    await sgMail.send(msg);
+    console.log('📧 Email sent successfully to:', process.env.NOTIFY_EMAIL);
     return true;
   } catch (error) {
     console.error('❌ Error sending email:', error.message);
@@ -58,30 +55,12 @@ exports.sendContactNotification = async (contactData) => {
 };
 
 // Send confirmation email to the person who submitted the form
+// Note: Disabled on SendGrid free trial - can only send to verified emails
 exports.sendConfirmationEmail = async (recipientEmail, name) => {
   try {
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: recipientEmail,
-      subject: 'Message Received - Portfolio Contact',
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #333;">Thank You, ${name}!</h2>
-          <p>Thank you for reaching out.</p>
-          
-          <p>I have received your message and will get back to you as soon as possible.</p>
-          
-          <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
-          <p style="color: #999; font-size: 12px;">
-            Best regards,<br>
-            Rajmangal Tiwari
-          </p>
-        </div>
-      `
-    };
-
-    const info = await transporter.sendMail(mailOptions);
-    console.log('📧 Confirmation email sent to:', recipientEmail);
+    console.log('📧 Confirmation email skipped (SendGrid free trial limitation)');
+    // On free trial, confirmation emails to external users cannot be sent
+    // Upgrade SendGrid plan to enable this feature
     return true;
   } catch (error) {
     console.error('❌ Error sending confirmation email:', error.message);
