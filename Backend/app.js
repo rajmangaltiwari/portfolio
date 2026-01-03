@@ -10,7 +10,7 @@ const contactRoutes = require('./routes/contactRoutes');
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
@@ -24,10 +24,10 @@ app.use((req, res, next) => {
 });
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/portfolio')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('✅ MongoDB connected successfully');
-    console.log('Database:', process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/portfolio');
+    console.log('Database:', process.env.MONGODB_URI );
   })
   .catch(err => {
     console.error('❌ MongoDB connection error:', err.message);
@@ -66,3 +66,5 @@ app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📍 http://localhost:${PORT}`);
 });
+
+app.export = app;
