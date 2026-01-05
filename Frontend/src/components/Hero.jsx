@@ -68,7 +68,7 @@ const Hero = () => {
               <a href="#projects">View My Work</a>
             </button>
             <button className="border-2 border-purple-500 text-purple-400 px-8 py-3 rounded-lg hover:bg-purple-500/10 transition-all duration-300 font-semibold">
-              <a href="https://drive.google.com/file/d/1yV5N_GGG2mxgAoXbBRJHFXN2hOmzOt5r/view?usp=sharing">My Resume</a>
+              <a href="/Rajmangal_Tiwari.pdf" target="_blank" rel="noopener noreferrer">My Resume</a>
             </button>
           </motion.div>
         </motion.div>

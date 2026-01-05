@@ -133,7 +133,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-white mb-4">Quick Links</h3>
               <div className="flex flex-wrap gap-3">
                 {[
-                  { name: 'Resume', link: 'https://drive.google.com/file/d/1yV5N_GGG2mxgAoXbBRJHFXN2hOmzOt5r/view?usp=sharing' },
+                  { name: 'Resume', link: '/Rajmangal_Tiwari.pdf' },
                   { name: 'Portfolio', link: '#projects' },
                   { name: 'Projects', link: '#projects' }
                 ].map((item, index) => (

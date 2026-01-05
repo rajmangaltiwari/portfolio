@@ -104,7 +104,8 @@ const Header = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Connect
+              <a href="#contact">Connect</a>
+              
             </motion.button>
 
             {/* Mobile Menu Button */}
