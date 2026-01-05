@@ -134,7 +134,7 @@ const Contact = () => {
               <div className="flex flex-wrap gap-3">
                 {[
                   { name: 'Resume', link: '/Rajmangal_Tiwari.pdf' },
-                  { name: 'Portfolio', link: '#projects' },
+                  { name: 'Portfolio', link: '#home' },
                   { name: 'Projects', link: '#projects' }
                 ].map((item, index) => (
                   <a
