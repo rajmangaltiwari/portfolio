@@ -29,27 +29,6 @@ const Footer = () => {
             </p>
           </motion.div>
 
-          {/* Quick Links */}
-          <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-          viewport={{ once: true, amount: 0.3 }}
-          >
-            <h4 className="text-white font-bold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {['Home', 'About', 'Skills', 'Projects', 'Contact'].map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={`#${link.toLowerCase()}`}
-                    className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
 
           {/* Social Links */}
           <motion.div

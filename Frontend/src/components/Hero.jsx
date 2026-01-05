@@ -3,6 +3,7 @@ import avator from '../assets/avator.png'
 import { motion } from 'framer-motion'
 
 const Hero = () => {
+
   const glows = [
     "-top-10 -right-10 w-[360px] h-[360px] opacity-20 blur-[120px]",
     "bottom-0 left-10 w-[420px] h-[420px] opacity-15 blur-[140px] delay-300",
@@ -20,7 +21,7 @@ const Hero = () => {
         ))}
       </div>
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full">
-        <motion.div className="space-y-6"
+        <motion.div className="space-y-6 text-center md:text-left"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -32,10 +33,11 @@ const Hero = () => {
           transition={{ delay: 0.1, duration: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
           >
-            <p className="text-purple-400 text-lg font-semibold">Welcome to my Portfolio</p>
-            <h1 className="text-5xl md:text-6xl font-bold text-white">
-              Hi, I'm{' '}
-              <span className="bg-linear-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
+            
+            <h1 className="text-4xl md:text-5xl font-bold text-white">
+              Hello, I'm{' '}
+              <br />
+              <span className="bg-linear-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-5xl md:text-7xl text-transparent">
                 Rajmangal Tiwari
               </span>
             </h1>
@@ -56,7 +58,7 @@ const Hero = () => {
           >
             I'm a Web Developer passionate about creating responsive and modern websites. I love turning ideas into clean and functional digital experiences.
           </motion.p>
-          <motion.div className="flex flex-wrap gap-4 pt-4"
+          <motion.div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
@@ -66,12 +68,12 @@ const Hero = () => {
               <a href="#projects">View My Work</a>
             </button>
             <button className="border-2 border-purple-500 text-purple-400 px-8 py-3 rounded-lg hover:bg-purple-500/10 transition-all duration-300 font-semibold">
-              <a href="https://drive.google.com/file/d/1yV5N_GGG2mxgAoXbBRJHFXN2hOmzOt5r/view?usp=sharing">Download Resume</a>
+              <a href="https://drive.google.com/file/d/1yV5N_GGG2mxgAoXbBRJHFXN2hOmzOt5r/view?usp=sharing">My Resume</a>
             </button>
           </motion.div>
         </motion.div>
 
-        <motion.div className="flex justify-center w-full"
+        <motion.div className="hidden md:flex justify-center w-full"
         initial={{ opacity: 0, x: 30 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}

@@ -39,11 +39,11 @@ const About = () => {
               Full Stack Developer
             </p>
             <p className='mt-4 text-gray-300 leading-relaxed text-base sm:text-lg max-w-2xl md:max-w-3xl'>
-              I’m a full stack developer skilled in React, Redux, Node.js, Express.js, JavaScript, MongoDB, MySQL, Tailwind CSS, and REST APIs, passionate about creating clean, scalable, and engaging web applications.
+              I’m a full stack developer skilled in React, Next.js, Node.js, Express.js, JavaScript, MongoDB, MySQL, Tailwind CSS, and REST APIs, passionate about creating clean, scalable, and engaging web applications.
             </p>
             <div className='grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl mt-6'>
               {stats.map((ele, index) => (
-                <motion.div key={index} className='rounded-xl border border-purple-500/30 bg-purple-900/10 px-4 py-3 text-center'
+                <motion.div key={index} className={`rounded-xl border border-purple-500/30 bg-purple-900/10 px-4 py-3 text-center ${index === 2 ? "col-span-2 sm:col-span-1 w-[70%] sm:w-full mx-auto" : ""}`}
                 initial={{opacity: 0, y: 10}}
                 whileInView={{opacity: 1, y: 0}}
                 transition= {{delay: 0.05*index, duration: 0.4}}

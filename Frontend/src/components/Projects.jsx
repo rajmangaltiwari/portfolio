@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import screenMe from '../assets/screenMe.jpeg'
 import weather from '../assets/weather.jpeg'
+import blog from '../assets/blog.jpeg'
+import upcoming from '../assets/upcoming.jpg'
 
 const Projects = () => {
   const userProjects = [
@@ -17,12 +19,12 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'Real-Time Task Manager',
-      description: 'A collaborative application for managing tasks and projects in real-time. Features a drag-and-drop interface and instant updates using Firebase.',
-      tags: ['React', 'Firebase', 'Tailwind CSS', 'Zustand'],
-      image: 'https://via.placeholder.com/400x250/6a0dad/ffffff?text=Task+Manager',
+      title: 'Blog Platform',
+      description: 'A content management system for creating and sharing blog posts with SEO optimization.',
+      tags: ['React', 'Strapi CMS', 'Markdown', 'SEO'],
+      image: blog,
       liveLink: '#',
-      githubLink: '#'
+      githubLink: '#'      
     },
     {
       id: 3,
@@ -35,13 +37,13 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'Interactive Portfolio Website',
-      description: 'A personal portfolio site to showcase projects and skills, featuring smooth animations and a clean, modern aesthetic. Built with Vite for a fast developer experience.',
-      tags: ['React', 'Vite', 'Framer Motion', 'Tailwind CSS'],
-      image: 'https://via.placeholder.com/400x250/000000/ffffff?text=Portfolio',
+      title: 'Social Media Feed',
+      description: 'A responsive social media platform with authentication, posts, and user interactions.',
+      tags: ['React', 'Express', 'PostgreSQL', 'JWT'],
+      image: upcoming,
       liveLink: '#',
-      githubLink: '#'
-    }
+      githubLink: '#'      
+    },
   ]
 
   const glows = [
