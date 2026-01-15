@@ -23,8 +23,8 @@ const Projects = () => {
       description: 'A content management system for creating and sharing blog posts with SEO optimization.',
       tags: ['React', 'Strapi CMS', 'Markdown', 'SEO'],
       image: blog,
-      liveLink: '#',
-      githubLink: '#'      
+      liveLink: 'https://client-blog-app.onrender.com/',
+      githubLink: 'https://github.com/rajmangaltiwari/blog-app'      
     },
     {
       id: 3,
